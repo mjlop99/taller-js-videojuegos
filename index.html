@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mj Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="gameContainer">
+        <canvas id="game">
+
+        </canvas>
+        <div class="btns">
+            <button id="arriba">Arriba</button>
+            <button id="izquierda">Izquierda</button>
+            <button id="derecha">Derecha</button>
+            <button id="abajo">Abajo</button>
+        </div>
+    </div>
+    <div class="massage">
+        <p class="info">vidas: <span id="lives"></span></p>
+        <p class="info">Tiempo:⏱ <span id="textTime"></span></p>
+        <p class="info">Record:📈 <span id="record"></span></p>
+    </div>
+    <script src="map.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
