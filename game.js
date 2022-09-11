@@ -10,31 +10,36 @@ const btnDown = document.querySelector('#abajo');
 const mostrarVidas=document.querySelector('#lives');
 const textTime=document.querySelector('#textTime');
 const record = document.querySelector('#record');
-let canvasSize;let elementsSize;
+let canvasSize;let elementsSize;let oldElementZise;
 let playerPosition={
   x: undefined,
   y: undefined
 };
 let arrayEspacio=[];let arrayBombas=[];
-let level=2;let lives=3;
+let level=0;let lives=3;
 let timeStart;let timePlayer;let timeInterval;
 
 
 function setCanvasSize() {
   if (window.innerHeight > window.innerWidth) {
-    canvasSize = window.innerWidth * 0.85;
+    canvasSize = window.innerWidth * 0.75;
   } else {
-    canvasSize = window.innerHeight * 0.85;
+    canvasSize = window.innerHeight * 0.75;
   }
   
   canvas.setAttribute('width', canvasSize+15);
   canvas.setAttribute('height', canvasSize+15);
-  
+  oldElementZise=elementsSize;
   elementsSize = Math.floor(canvasSize / 10);
-
+  if (playerPosition.x!=undefined && playerPosition.y!=undefined) {
+    cambioTamañoJugador(elementsSize,oldElementZise);
+  }
   startGame();
 }
-
+function cambioTamañoJugador(nuevaEscala,antiguaEscala) {
+  playerPosition.x=playerPosition.x*(nuevaEscala/antiguaEscala);
+  playerPosition.y=playerPosition.y*(nuevaEscala/antiguaEscala);
+}
 function startGame() {
   game.font = elementsSize + 'px Verdana';
   game.textAlign = 'start';
@@ -165,7 +170,7 @@ function showTime() {
 
 }
 function showRecord(posibleRecord) {
-  if (localStorage.getItem('record')>posibleRecord) {
+  if (parseFloat(localStorage.getItem('record'))<parseFloat(posibleRecord)) {
     console.log("loco no hay record");
   } else {
     console.log("existe un nuevo record",posibleRecord);
